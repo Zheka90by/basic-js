@@ -13,7 +13,12 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function getSeason(date) {
   if (!date) return 'Unable to determine the time of year!';
-//throw new Error("Invalid date!")
+
+  try {
+    date.toTimeString();
+  } catch (error) {
+    throw new Error('Invalid date!');
+  }
 
   const month = date.getMonth()
   switch (month) {
