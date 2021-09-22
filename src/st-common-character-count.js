@@ -16,7 +16,7 @@ export default function getCommonCharacterCount( s1, s2 ) {
   if (s1.length == 0 || s2.lenght == 0) return 0;
   for (let i = 0; i < s1.length; i++) {
     if (s2.includes(s1[i])) {
-      count++;
+      counter++;
       s2 = s2.replace(s1[i], '');
     }
   }
