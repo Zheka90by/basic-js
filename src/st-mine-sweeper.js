@@ -23,7 +23,39 @@ import { NotImplementedError } from '../extensions/index.js';
  *  [1, 1, 1]
  * ]
  */
-export default function minesweeper (/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function minesweeper(matrix) {
+  let res = []
+  for (let row = 0; row < matrix.length; row++) {
+    let arr = []
+    for (let col = 0; col < matrix[row].length; col++) {
+      let counter = 0
+      if (matrix[row - 1] !== undefined && matrix[row - 1][col - 1] !== undefined && matrix[row - 1][col - 1] === true) {
+        counter++
+      }
+      if (matrix[row - 1] !== undefined && matrix[row - 1][col] === true) {
+        counter++
+      }
+      if (matrix[row - 1] !== undefined && matrix[row - 1][col + 1] !== undefined && matrix[row - 1][col + 1] === true) {
+        counter++
+      }
+      if (matrix[row][col - 1] !== undefined && matrix[row][col - 1] === true) {
+        counter++
+      }
+      if (matrix[row][col + 1] !== undefined && matrix[row][col + 1] === true) {
+        counter++
+      }
+      if (matrix[row + 1] !== undefined && matrix[row + 1][col - 1] !== undefined && matrix[row + 1][col - 1] === true) {
+        counter++
+      }
+      if (matrix[row + 1] !== undefined && matrix[row + 1][col] === true) {
+        counter++
+      }
+      if (matrix[row + 1] !== undefined && matrix[row + 1][col + 1] !== undefined && matrix[row + 1][col + 1] === true) {
+        counter++
+      }
+      arr.push(counter)
+    }
+    res.push(arr)
+  }
+  return res
 }
