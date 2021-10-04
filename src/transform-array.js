@@ -19,11 +19,12 @@ export default function transform(arr) {
   }
   let res = []
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === '--discard-next') i++
-    else if (arr[i] === '--discard-prev') res.pop()
+    if (arr[i] === '--discard-next' && arr[i + 2] === '--double-prev' || arr[i] === '--discard-next' && arr[i + 2] === '--discard-prev') i += 2
+    else if (arr[i] === '--discard-next') i++
+    else if (arr[i] === '--discard-prev' && arr[i - 2] !== '--discard-next') res.pop()
     else if (arr[i] === '--double-next') res.push(arr[i + 1])
-    else if (arr[i] === '--double-prev') res.push(arr[i - 1])
-    else res.push(arr[i])
+    else if (arr[i] === '--double-prev' && arr[i - 2] !== '--discard-next') res.push(arr[i - 1])
+    else if(arr[i] !== ('--discard-prev' && '--double-prev')) res.push(arr[i])
   }
   return res.filter(el => el !== undefined)
 }
